@@ -1,3 +1,5 @@
+import apikey from "../config.json"
+
 export const REQUEST_POSTS = 'REQUEST_POSTS'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const SELECT_SUBREDDIT = 'SELECT_SUBREDDIT'
@@ -27,7 +29,7 @@ export const receivePosts = (subreddit, json) => ({
 
 const fetchPosts = subreddit => dispatch => {
     dispatch(requestPosts(subreddit))
-    return fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=5189e701963e07831c6ef4d91498e9c9&language=en-US&page=1`)
+    return fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${apikey.tmdb}&language=en-US&page=1`)
         .then(response => response.json())
         .then(json => dispatch(receivePosts(subreddit, json)))
 }
